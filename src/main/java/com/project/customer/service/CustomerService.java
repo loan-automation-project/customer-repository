@@ -14,7 +14,7 @@ import com.project.customer.repository.CustomerRepository;
 @Service
 public class CustomerService {
 	
-	@Autowired // autowire repo
+	@Autowired //autowire repo
 	CustomerRepository customerRepo;
 	
 	public CustomerEntity addCustomer(CustomerEntity customer) {
@@ -37,6 +37,8 @@ public class CustomerService {
 		}
 	}
 	public String deleteACustomer(Long customerId) {
+		CustomerEntity customer=getACustomer(customerId);
+	
 		customerRepo.deleteById(customerId);
 	// if id does not exist throw error
 		return "Deleted Successfully";
@@ -44,7 +46,7 @@ public class CustomerService {
 	public CustomerEntity updateACustomer(CustomerEntity customer) {
 		CustomerEntity c = getACustomer(customer.getCustomerId());
 		BeanUtils.copyProperties(customer , c);
-		deleteACustomer(customer.getCustomerId());
+//		deleteACustomer(customer.getCustomerId());
 		return customerRepo.save(c);
 		// need to verify
 		
