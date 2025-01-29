@@ -44,6 +44,9 @@ public class CustomerEntity {
 	    @Column(name = "gender")
 	    private String gender;
 
+	    @Column(name = "user_id", unique = true)
+	    private Long userId;
+
 //	    @ManyToOne
 //	    @JoinColumn(name = "user_id", nullable = false) 
 //	    private User user;
@@ -119,6 +122,14 @@ public class CustomerEntity {
 
 	    public void setGender(String gender) {
 	        this.gender = gender;
+	    }
+
+	    public Long getUserId() {
+	        return userId;
+	    }
+
+	    public void setUserId(Long userId) {
+	        this.userId = userId;
 	    }
 
 	   
