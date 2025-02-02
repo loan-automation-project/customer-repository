@@ -5,7 +5,11 @@ import org.springframework.stereotype.Repository;
 
 import com.project.customer.entity.CustomerEntity;
 
+import java.util.Optional;
+
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity , Long> {
 
+
+    Optional<CustomerEntity> findByUsername(String username);
 }

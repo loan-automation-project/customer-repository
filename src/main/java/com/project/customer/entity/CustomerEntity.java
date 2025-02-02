@@ -19,36 +19,68 @@ public class CustomerEntity {
 	    @Column(name = "customer_id")
 	    private Long customerId;
 
-	    @Column(name = "first_name", nullable = false)
-	    private String firstName;
+		@Column(name = "user_id")
+		private long userId;
 
-	    @Column(name = "last_name", nullable = false)
-	    private String lastName;
+		@Column(name = "username")
+		private String username;
 
-	    @Column(name = "email", unique = true, nullable = false)
+	    @Column(name = "full_name")
+	    private String fullName;
+
+
+	    @Column(name = "email")
 	    private String email;
 
-	    @Column(name = "phone", unique = true, nullable = false)
+	    @Column(name = "phone")
 	    private String phone;
 
 	    @Column(name = "address")
 	    private String address;
 
-	    @Lob 
+	    @Lob
 	    @Column(name = "picture")
 	    private byte[] picture;
 
-	    @Column(name = "date_of_birth")
-	    private LocalDate dateOfBirth;
+	    @Column(name = "age")
+	    private String age;
 
 	    @Column(name = "gender")
 	    private String gender;
 
-//	    @ManyToOne
-//	    @JoinColumn(name = "user_id", nullable = false) 
-//	    private User user;
+	public CustomerEntity() {
+	}
 
-	    // Getters and setters
+	public CustomerEntity(Long customerId, long userId, String username, String fullName, String phone, String email, String address, byte[] picture, String age, String gender) {
+		this.customerId = customerId;
+		this.userId = userId;
+		this.username = username;
+		this.fullName = fullName;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.picture = picture;
+		this.age = age;
+		this.gender = gender;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	// Getters and setters
 	    public Long getCustomerId() {
 	        return customerId;
 	    }
@@ -57,23 +89,23 @@ public class CustomerEntity {
 	        this.customerId = customerId;
 	    }
 
-	    public String getFirstName() {
-	        return firstName;
-	    }
+	public String getAge() {
+		return age;
+	}
 
-	    public void setFirstName(String firstName) {
-	        this.firstName = firstName;
-	    }
+	public void setAge(String age) {
+		this.age = age;
+	}
 
-	    public String getLastName() {
-	        return lastName;
-	    }
+	public String getFullName() {
+		return fullName;
+	}
 
-	    public void setLastName(String lastName) {
-	        this.lastName = lastName;
-	    }
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
 
-	    public String getEmail() {
+	public String getEmail() {
 	        return email;
 	    }
 
@@ -105,13 +137,8 @@ public class CustomerEntity {
 	        this.picture = picture;
 	    }
 
-	    public LocalDate getDateOfBirth() {
-	        return dateOfBirth;
-	    }
 
-	    public void setDateOfBirth(LocalDate dateOfBirth) {
-	        this.dateOfBirth = dateOfBirth;
-	    }
+
 
 	    public String getGender() {
 	        return gender;

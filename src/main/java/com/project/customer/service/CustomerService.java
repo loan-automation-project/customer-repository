@@ -3,6 +3,7 @@ package com.project.customer.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.project.customer.dto.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,25 @@ public class CustomerService {
 	@Autowired //autowire repo
 	CustomerRepository customerRepo;
 	
-	public CustomerEntity addCustomer(CustomerEntity customer) {
-		customerRepo.saveAndFlush(customer);
-		return customer;
+//	public CustomerEntity addCustomer(CustomerEntity customer) {
+//		customerRepo.saveAndFlush(customer);
+//		return customer;
+//	}
+
+
+	public CustomerEntity createCustomer(User user) {
+		CustomerEntity customer = new CustomerEntity();
+		customer.setUserId(user.getUserId()); // Set userId as foreign key
+		customer.setUsername(user.getUsername());
+		customer.setFullName(user.getFullName());
+		customer.setEmail(user.getEmail());
+		customer.setAge(user.getAge());
+		customer.setGender(user.getGender());
+		customer.setPhone(user.getPhone());
+		return customerRepo.save(customer);
 	}
+
+
 	public List<CustomerEntity> getAllCustomers(){
 		return customerRepo.findAll();
 	}
@@ -51,6 +67,11 @@ public class CustomerService {
 		// need to verify
 		
 	}
-	
 
+
+	public CustomerEntity getCustomerByUsername(String username) {
+		Optional<CustomerEntity> customer = customerRepo.findByUsername(username);
+		assert customer.isPresent();
+		return customer.get();
+	}
 }
